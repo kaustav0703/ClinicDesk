@@ -14,7 +14,7 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:3000", // 👈 must be specific
+    origin: ["http://localhost:3000", "https://clinic-desk-pink.vercel.app/"], // 👈 must be specific
   credentials: true,               // ✅ allow cookies
 }));
 
