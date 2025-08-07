@@ -104,6 +104,7 @@ export default function PatientForm({ onSubmit, onCancel, setShowForm }: Patient
         }
         finally{
             setShowForm(false);
+            window.location.reload();
         }
     };
 

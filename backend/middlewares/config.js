@@ -28,7 +28,6 @@ export function getUser(req, res, next) {
     }
 }
 
-
 export function setUser(res, user) {
     const token = jwt.sign({
         _id: user._id,
@@ -38,12 +37,11 @@ export function setUser(res, user) {
         }
     }, JWT_SECRET);
 
-    res.cookie('doctorToken', token, {
-        expires: new Date(Date.now() + 900000), // 15 minutes
+    res.cookie("doctorToken", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax'
+        secure: true,             // ✅ Required for HTTPS or Vercel
+        sameSite: "None",         // ✅ Required for cross-origin cookies
+        maxAge: 15 * 60 * 1000    // ✅ 15 minutes
     });
-
     return token;
 }
