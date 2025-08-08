@@ -90,6 +90,7 @@ export const login = async (req, res) => {
 
     const token = setUser(res, doctor);
 
+
     res.status(200).json({
       success: true,
       token,
@@ -132,7 +133,7 @@ export const cookieUserLogin = async (req, res) => {
   }
 };
 
-export const getDoctorToken=(req, res)=> {
+export const getDoctorToken = (req, res) => {
   const cookies = cookie.parse(req.headers.cookie || '');
   const doctorToken = cookies.doctorToken;
 

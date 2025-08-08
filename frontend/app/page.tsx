@@ -2,7 +2,9 @@
 import { useEffect } from "react";
 import HomeSection from "@/components/HomeSection";
 import DoctorSection from "@/components/DoctorSection";
-import PatientsSection from "@/components/PatientSection";
+import PatientsSection from "@/components/PatientsSection";
+import PatientSection from "@/components/PatientSection";
+import PatientEdit from "@/components/PatientEdit";
 import DoctorLogin from "@/components/DoctorLogin";
 import DoctorRegister from "@/components/DoctorRegister";
 import { useAuth } from "@/context/AuthContext";
@@ -25,7 +27,7 @@ const patients = [
 ];
 
 export default function Home() {
-  const { setAllMyPatients, setLoggedInDoctor, loggedIn, login, logout, registerState, setLoggedIn, loggedInDoctor, doctorLoginToken, setHasPatients, allMyPatients } = useAuth();
+  const { setAllMyPatients, setLoggedInDoctor, loggedIn, login, logout, registerState, setLoggedIn, loggedInDoctor, doctorLoginToken, setHasPatients, allMyPatients, isCurrentPatientSelected, currentPatient, isPatientEdit } = useAuth();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
@@ -85,7 +87,7 @@ export default function Home() {
       } catch (error: any) {
         console.log("Error getting patients");
       }
-      finally{
+      finally {
 
       }
     }
@@ -93,8 +95,8 @@ export default function Home() {
   }, [loggedInDoctor]);
 
   // Check if patients exist
-  useEffect(()=>{
-    if(allMyPatients.length > 0){
+  useEffect(() => {
+    if (allMyPatients.length > 0) {
       setHasPatients(true);
     }
   }, [allMyPatients]);
@@ -111,9 +113,17 @@ export default function Home() {
       {loggedIn && (
         <>
           <DoctorSection doctor={currentDoctor} />
-          <PatientsSection patients={patients} />
+
+          {isPatientEdit ? (
+            <PatientEdit patientData={currentPatient} />
+          ) : isCurrentPatientSelected ? (
+            <PatientSection patientData={currentPatient} />
+          ) : (
+            <PatientsSection patients={patients} />
+          )}
         </>
       )}
+
     </div>
   );
 }

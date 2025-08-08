@@ -25,6 +25,12 @@ type AuthContextType = {
   setDoctorLoginToken: Dispatch<SetStateAction<any>>;
   hasPatients: boolean;
   setHasPatients: Dispatch<SetStateAction<boolean>>;
+  currentPatient: any;
+  setCurrentPatient: Dispatch<SetStateAction<boolean>>;
+  isCurrentPatientSelected: boolean;
+  setIsCurrentPatientSelected: Dispatch<SetStateAction<boolean>>;
+  isPatientEdit: boolean;
+  setIsPatientEdit: Dispatch<SetStateAction<boolean>>;
 };
 
 // Create context
@@ -38,6 +44,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [allMyPatients, setAllMyPatients] = useState<any>([]);
   const [doctorLoginToken, setDoctorLoginToken] = useState<any>();
   const [hasPatients, setHasPatients] = useState<boolean>(false);
+  const [currentPatient, setCurrentPatient] = useState<any>();
+  const [isCurrentPatientSelected, setIsCurrentPatientSelected] = useState<boolean>(false);
+  const [isPatientEdit, setIsPatientEdit] = useState<boolean>(false);
 
   const login = () => {
     setLoggedIn(true);
@@ -70,6 +79,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setDoctorLoginToken,
         hasPatients,
         setHasPatients,
+        currentPatient,
+        setCurrentPatient,
+        isCurrentPatientSelected,
+        setIsCurrentPatientSelected,
+        isPatientEdit,
+        setIsPatientEdit
       }}
     >
       {children}

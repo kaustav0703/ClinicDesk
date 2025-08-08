@@ -1,7 +1,7 @@
 // ****** Importing Patient Model ****** //
 import Patient from '../../../models/patientModel.js';
 
-// ****** Patient Registration ****** //
+// register new patient
 export const register = async (req, res) => {
 
   const doctor = req.body.doctor;
@@ -16,11 +16,11 @@ export const register = async (req, res) => {
 
     // Check if phone exist in database
     let patient = await Patient.find({ phone });
-    
+
     if (patient.length > 0) {
       return res.status(200).json({ success: true, body: patient[0] });
     }
-    
+
     // Check if email exist in database
     patient = await Patient.find({ email });
     if (patient.length > 0) {
@@ -41,12 +41,24 @@ export const register = async (req, res) => {
   }
 }
 
-export const allPatients=async(req, res)=> {
+// get all patients
+export const allPatients = async (req, res) => {
   try {
     const patients = await Patient.find({});
     res.status(200).json({ success: true, body: patients });
   } catch (error) {
     console.error('Error fetching patients:', error);
+    throw error;
+  }
+}
+
+// delete patient
+export const deletePatient = async (req, res) => {
+  try {
+    const patient = await Patient.findByIdAndDelete(req.params.id);
+    res.status(200).json({ success: true, body: patient });
+  } catch (error) {
+    console.error('Error deleting patient:', error);
     throw error;
   }
 }
