@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className='dark'>
       <body className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-white">
         <AuthProvider>
           <Navbar /> {/* Will still render always – for conditional render, use `useAuth()` inside Navbar */}
