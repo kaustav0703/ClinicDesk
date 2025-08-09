@@ -10,7 +10,6 @@ import {
     Venus,
     ArrowLeft,
 } from "lucide-react";
-import { useEffect } from "react";
 
 export default function PatientSection({ patientData }: { patientData: any }) {
     const { setIsCurrentPatientSelected, loggedInDoctor } = useAuth();

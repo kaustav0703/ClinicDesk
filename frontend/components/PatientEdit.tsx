@@ -2,7 +2,8 @@
 import { useAuth } from "@/context/AuthContext";
 import { motion } from "framer-motion";
 import { User, Phone, Mail, Venus, ArrowLeft, Activity } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import axios from 'axios';
 
 export default function PatientEdit({ patientData }: { patientData: any }) {
     const { setIsPatientEdit } = useAuth();
@@ -32,18 +33,22 @@ export default function PatientEdit({ patientData }: { patientData: any }) {
         if (isChanged) {
             console.log("Data changed. Calling API...");
             try {
-                const res = await fetch("/api/update-patient", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
+                const data = await axios.put(`${backendUrl}/patients/update/${patientData._id}`, formData, {
+                    headers:{
+                        "Content-Type":"application/json"
+                    }
                 });
+                if(data.status === 200){
+                    console.log("Data updated successfully.");
+                    setIsPatientEdit(false);
+                }
 
-                const data = await res.json();
-                console.log("API response:", data);
-            } catch (error) {
-                console.error("API error:", error);
+            } catch (err:any) {
+                if(err.response.status === 400){
+                    console.log("Invalid data provided.");
+                }
+            }finally{
+                setIsPatientEdit(false);
             }
         } else {
             console.log("No changes detected.");

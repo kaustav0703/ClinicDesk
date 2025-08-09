@@ -62,3 +62,22 @@ export const deletePatient = async (req, res) => {
     throw error;
   }
 }
+
+// update patient details
+export const updatePatient = async (req, res) => {
+  const patientId = req.params.id;
+  try{
+
+    // Find and update patient
+    const updatedPatient = await Patient.findByIdAndUpdate(patientId, req.body, { new: true });
+
+    // Failed to update patient
+    if(!updatedPatient) res.status(404).json({ success: false, msg: 'Failed to update patient' });
+
+    // Updated patient successfully
+    res.status(200).json({ success: true, msg: 'Patient updated successfully!' }); 
+
+  }catch(err){
+    res.status(404).json({success:false, msg: 'Failed to update patient', error: err.message});
+  }
+}
