@@ -3,7 +3,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-const headingWords = ["Welcome", "to", "Hospital", "API"];
+const headingWords = ["Welcome", "to", "Clinic", "Desk"];
 
 export default function HomeSection() {
   const ref = useRef(null);
@@ -67,8 +67,7 @@ export default function HomeSection() {
         transition={{ delay: 0.5, duration: 0.7 }}
         className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mb-8"
       >
-        A RESTful API for managing hospitals, doctors, patients, and appointments —
-        built with Node.js, Express, MongoDB, and more.
+        ClinicDesk – a full-stack app built with Next.js, Node.js, and MongoDB Atlas for doctors to manage appointments, medical records, and profiles, featuring secure authentication and an intuitive, responsive interface.
       </motion.p>
 
       <motion.a

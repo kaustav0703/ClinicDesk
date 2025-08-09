@@ -46,7 +46,7 @@ export default function PatientForm({ onSubmit, onCancel, setShowForm }: Patient
                 const tokenResponse = await axios.get(`${apiUrl}/doctors/doctor_token`, {
                     withCredentials: true,
                 });
-                if(tokenResponse.status === 200) {
+                if (tokenResponse.status === 200) {
                     setDoctorToken(tokenResponse.data.token);
                 }
             } catch (error) {
@@ -102,9 +102,8 @@ export default function PatientForm({ onSubmit, onCancel, setShowForm }: Patient
             console.error("Failed to register patient:", error);
             alert("Patient registration failed. Check console for details.");
         }
-        finally{
+        finally {
             setShowForm(false);
-            window.location.reload();
         }
     };
 
