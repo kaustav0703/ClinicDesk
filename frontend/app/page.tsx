@@ -7,6 +7,7 @@ import PatientSection from "@/components/PatientSection";
 import PatientEdit from "@/components/PatientEdit";
 import DoctorLogin from "@/components/DoctorLogin";
 import DoctorRegister from "@/components/DoctorRegister";
+import AppointmentCalendar from "@/components/AppointmentCalendar";
 import { useAuth } from "@/context/AuthContext";
 import axios from 'axios';
 
@@ -102,7 +103,7 @@ export default function Home() {
   }, [allMyPatients]);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center">
       <HomeSection />
       {/* Toggle login for testing */}
       <div className="flex justify-center my-4">
@@ -121,9 +122,11 @@ export default function Home() {
           ) : (
             <PatientsSection patients={patients} />
           )}
+
+          <AppointmentCalendar />
         </>
       )}
-
+      
     </div>
   );
 }

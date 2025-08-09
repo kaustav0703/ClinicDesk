@@ -100,7 +100,7 @@ export default function DoctorRegister() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-6 font-inter">
+    <section id="signup" className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-6 font-inter">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

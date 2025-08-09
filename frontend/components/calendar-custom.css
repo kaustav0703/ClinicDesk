@@ -1,0 +1,21 @@
+/* calendar-custom.css */
+.rbc-date-cell {
+  color: #1f2937; /* Tailwind gray-800 */
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.rbc-time-gutter {
+  color: #1f2937;
+  font-size: 0.8rem;
+}
+
+.rbc-header {
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.rbc-today {
+  background-color: #fef3c7; /* Tailwind amber-100 */
+}

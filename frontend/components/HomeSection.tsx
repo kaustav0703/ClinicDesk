@@ -22,7 +22,7 @@ export default function HomeSection() {
     <section
       ref={ref}
       id="home"
-      className="min-h-screen bg-gradient-to-br from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col items-center justify-center text-center px-6"
+      className="min-h-screen bg-gradient-to-br from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col items-center justify-center text-center px-6 w-[99.9%]"
     >
       {/* Floating Text Animation */}
       <motion.div
