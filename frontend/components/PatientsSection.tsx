@@ -162,95 +162,92 @@ export default function PatientsSection({ patients }: any) {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-3xl p-8 shadow-2xl border border-indigo-500/20 hover:border-indigo-500/40 transition-all cursor-pointer"
+              whileHover={{ scale: 1.04, rotate: 0.3 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative overflow-hidden rounded-3xl shadow-2xl border border-indigo-500/20 hover:border-indigo-500/40 bg-gradient-to-br from-gray-800 via-gray-900 to-black"
             >
-              {/* Header: Avatar + Name + ID */}
-              <div className="flex items-center gap-6 mb-6">
-                <UserCircle size={48} className="text-indigo-400" />
+              {/* Header strip */}
+              <div className="px-6 py-4 flex items-center gap-4">
+                <UserCircle size={42} className="text-indigo-300" />
                 <div>
-                  <h3 className="text-2xl font-bold text-white">{patient.name}</h3>
-                  <p className="text-sm text-gray-400 flex items-center gap-2 mt-1">
-                    <BadgeCheck size={16} className="text-green-400" />
-                    ID: {patient._id}
+                  <h3 className="text-xl font-medium text-indigo-200">{patient.name}</h3>
+                  <p className="text-xs text-indigo-400 flex items-center gap-1">
+                    <BadgeCheck size={14} /> {patient._id}
                   </p>
                 </div>
               </div>
 
-              {/* Patient Info */}
-              <div className="space-y-2 text-gray-300 text-lg">
+              {/* Body */}
+              <div className="p-6 space-y-3 text-gray-300 text-base">
                 <p className="flex items-center gap-3">
-                  <Mail size={18} className="text-indigo-300" /> {patient.email}
+                  <Mail size={18} className="text-indigo-300" />
+                  <a href={`mailto:${patient.email}`} className="hover:underline">{patient.email}</a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Phone size={18} className="text-indigo-300" /> {patient.phone}
+                  <Phone size={18} className="text-indigo-300" />
+                  <a href={`tel:${patient.phone}`} className="hover:underline">{patient.phone}</a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <span className="text-indigo-300 text-lg">
-                    {patient.gender === "Male"
-                      ? "♂️"
-                      : patient.gender === "Female"
-                        ? "♀️"
-                        : "⚧️"}
+                  <span className="text-indigo-300">
+                    {patient.gender === "Male" ? "♂️" : patient.gender === "Female" ? "♀️" : "⚧️"}
                   </span>
                   {patient.gender || "Not specified"}
                 </p>
+                {patient.age && (
+                  <p className="flex items-center gap-3">
+                    🎂 {patient.age} years old
+                  </p>
+                )}
               </div>
 
-              {/* Status Badge */}
-              <div className="mt-6 flex items-center justify-between">
-                {/* Status Badge */}
+              {/* Footer */}
+              <div className="px-6 py-4 flex items-center justify-between border-t border-gray-700">
+                {/* Status badge */}
                 <span
-                  className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow 
-      ${patient.status === "Admitted"
-                      ? "bg-green-600 text-white"
+                  className={`px-4 py-1.5 rounded-full text-sm font-semibold shadow-md 
+        ${patient.status === "Admitted"
+                      ? "bg-green-600 text-white shadow-green-500/30"
                       : patient.status === "Discharged"
-                        ? "bg-blue-600 text-white"
-                        : "bg-yellow-400 text-black"
+                        ? "bg-blue-600 text-white shadow-blue-500/30"
+                        : "bg-yellow-400 text-black shadow-yellow-400/30"
                     }`}
                 >
                   {patient.status}
                 </span>
 
-                {/* Action Buttons */}
-                <div className="flex items-center gap-2 ml-4">
-                  {/* View Button */}
+                {/* Action buttons */}
+                <div className="flex gap-2">
                   <button
                     onClick={() => handlePatientClick(patient)}
-                    className="p-2 bg-gray-800 hover:bg-indigo-600 text-white rounded-lg transition-colors duration-200"
-                    title="View Patient"
+                    className="p-2 bg-gray-800 hover:bg-indigo-600 rounded-lg transition"
+                    title="View"
                   >
-                    <Eye size={18} />
+                    <Eye size={20} />
                   </button>
-
-                  {/* Edit Button - replace with your actual edit logic */}
                   <button
-                    onClick={(e) => {
+                    onClick={() => {
                       setIsPatientEdit(true);
                       setCurrentPatient(patient);
                     }}
-                    className="p-2 bg-gray-800 hover:bg-yellow-500 text-white rounded-lg transition-colors duration-200"
-                    title="Edit Patient"
+                    className="p-2 bg-gray-800 hover:bg-yellow-500 rounded-lg transition"
+                    title="Edit"
                   >
-                    <Pen size={18} />
+                    <Pen size={20} />
                   </button>
-
-                  {/* Delete Button */}
                   <button
                     onClick={(e) => {
-                      e.stopPropagation(); // prevent card click
+                      e.stopPropagation();
                       handleDeletePatient(patient._id);
                     }}
-                    className="p-2 bg-gray-800 hover:bg-red-600 text-white rounded-lg transition-colors duration-200"
-                    title="Delete Patient"
+                    className="p-2 bg-red-600 hover:bg-red-700 rounded-lg transition"
+                    title="Delete"
                   >
                     🗑️
                   </button>
                 </div>
               </div>
-
             </motion.div>
+
           ))}
 
         </motion.div>
