@@ -6,6 +6,7 @@ import { useRef } from "react";
 import axios from 'axios';
 
 export default function PatientEdit({ patientData }: { patientData: any }) {
+
     const { setIsPatientEdit } = useAuth();
 
     const nameRef = useRef<HTMLInputElement>(null);
@@ -34,20 +35,20 @@ export default function PatientEdit({ patientData }: { patientData: any }) {
             console.log("Data changed. Calling API...");
             try {
                 const data = await axios.put(`${backendUrl}/patients/update/${patientData._id}`, formData, {
-                    headers:{
-                        "Content-Type":"application/json"
+                    headers: {
+                        "Content-Type": "application/json"
                     }
                 });
-                if(data.status === 200){
+                if (data.status === 200) {
                     console.log("Data updated successfully.");
                     setIsPatientEdit(false);
                 }
 
-            } catch (err:any) {
-                if(err.response.status === 400){
+            } catch (err: any) {
+                if (err.response.status === 400) {
                     console.log("Invalid data provided.");
                 }
-            }finally{
+            } finally {
                 setIsPatientEdit(false);
             }
         } else {

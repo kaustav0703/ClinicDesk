@@ -219,7 +219,7 @@ export default function PatientsSection({ patients }: any) {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handlePatientClick(patient)}
-                    className="p-2 bg-gray-800 hover:bg-indigo-600 rounded-lg transition"
+                    className="cursor-pointer p-2 bg-gray-800 hover:bg-indigo-600 rounded-lg transition"
                     title="View"
                   >
                     <Eye size={20} />
@@ -229,7 +229,7 @@ export default function PatientsSection({ patients }: any) {
                       setIsPatientEdit(true);
                       setCurrentPatient(patient);
                     }}
-                    className="p-2 bg-gray-800 hover:bg-yellow-500 rounded-lg transition"
+                    className="cursor-pointer p-2 bg-gray-800 hover:bg-yellow-500 rounded-lg transition"
                     title="Edit"
                   >
                     <Pen size={20} />
@@ -239,7 +239,7 @@ export default function PatientsSection({ patients }: any) {
                       e.stopPropagation();
                       handleDeletePatient(patient._id);
                     }}
-                    className="p-2 bg-red-600 hover:bg-red-700 rounded-lg transition"
+                    className="cursor-pointer p-2 bg-gray-800 hover:bg-red-700 rounded-lg transition"
                     title="Delete"
                   >
                     🗑️

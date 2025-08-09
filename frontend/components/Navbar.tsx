@@ -29,7 +29,7 @@ export default function Navbar() {
     ];
 
   useEffect(() => {
-   const handleScroll = () => {
+    const handleScroll = () => {
       const scrollY = window.scrollY + window.innerHeight / 2;
 
       const visibleSection = sections
@@ -77,7 +77,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           className="text-2xl font-bold cursor-pointer text-white dark:text-white"
         >
-          🏥 Hospital API
+          🏥 Clinic Desk
         </motion.div>
 
         <div className="flex gap-4">
